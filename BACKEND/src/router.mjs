@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
-import authRouter from './modules/authenticate.js';
-
+import authController from './controllers/authController.mjs';
+import eventController from './controllers/eventController.mjs'
+ 
 const app = express();
 
 // Middleware
@@ -14,6 +15,8 @@ app.get('/', (req, res) => {
 });
 
 // Authentication Routes
-app.use('/v1/authenticate', authRouter);
+app.use('/v1/authenticate', authController);
+
+app.use('/v1/events', eventController);
 
 export default app;

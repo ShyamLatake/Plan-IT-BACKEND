@@ -1,4 +1,5 @@
 import { response } from "../utils/response.mjs";
+
 export const validateInput = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
