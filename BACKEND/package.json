@@ -14,10 +14,12 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.1",
+    "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.3",
     "mysql2": "^3.9.3",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "pdfmake": "^0.2.10"
   }
 }

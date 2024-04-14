@@ -9,7 +9,7 @@
  * @param {*} error 
  * @returns 
  */
-const handleResponse = (res, status, message, data, error) => {
+const handleResponse = (res, status, data , message, error) => {
     const responseData = { status };
     if (message) responseData.message = message;
     if (data) responseData.data = data;
@@ -24,7 +24,7 @@ const handleResponse = (res, status, message, data, error) => {
  * @param {string} message
  */
 export const response = {
-    success: (res,data,message ) => handleResponse(res,200,data, message || 'Success'),
+    success: (res,data,message ) => handleResponse(res,200,data,'Success'),
     error: (res, error, message) => handleResponse(res, 404, message || 'Error', error),
     notFound: (res,message,error) => handleResponse(res, 404, message || 'Not Found', error),
     conflict: (res, error, message) => handleResponse(res, 409, message || 'Conflict', error),

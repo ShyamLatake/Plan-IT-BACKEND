@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 import authController from './controllers/authController.mjs';
-import eventController from './controllers/eventController.mjs'
+import eventController from './controllers/eventController.mjs';
+import posterController from './controllers/posterController.mjs';
  
 const app = express();
 
@@ -18,5 +19,7 @@ app.get('/', (req, res) => {
 app.use('/v1/authenticate', authController);
 
 app.use('/v1/events', eventController);
+
+app.use('/v1/poster', posterController);
 
 export default app;

@@ -9,15 +9,15 @@ const eventController = express.Router();
  * @name get/events
  */
 
-eventController.get("/events/:user_id", async (req, res) => {
+eventController.get("/:user_id", async (req, res) => {
     try {
         const userId = req.params.user_id;
 
         const events = await getEventsByUserId(userId);
 
-        return response(res, 200, events);
+        return response.success(res,events);
     } catch (error) {
-        return response(res, 400, error.message);
+        return response.error(res, error.message);
     }
 });
 
