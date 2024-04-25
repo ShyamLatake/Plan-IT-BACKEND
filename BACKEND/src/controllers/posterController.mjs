@@ -127,7 +127,7 @@ async function generatePDF(event, base64BackgroundImage, base64LogoImage) {
         const pdfDoc = printer.createPdfKitDocument(docDefinition);
         console.log("pdfdoc");
 
-        const stream = fs.createWriteStream(`/home/dell/sy/${event.event_name}.pdf`);
+        const stream = fs.createWriteStream(`/home/dell/sy/back/BACKEND/asset/uplod/${event.event_name}.pdf`);
         pdfDoc.pipe(stream);
         pdfDoc.end();
 
@@ -151,7 +151,7 @@ posterController.get("/:event_id", async (req, res) => {
         const events = await getEventsByEventId(eventId);
         var event = events[0];
         await generatePDF(event, base64BackgroundImage, base64LogoImage);
-        return response.success(res,events);
+        return response.success(res,`/home/dell/sy/back/BACKEND/asset/uplod/${event.event_name}.pdf`);
     } catch (error) {
         return response.error(res, error.message);
     }   

@@ -18,6 +18,18 @@ export const getEventsByUserId = (userId) => {
     });
 }
 
+export const getGuestByUserId = (userId) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM guest_lecture WHERE user_id = ?', [userId], (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+
 
 /**
  * This function is responsible for creating a new event
@@ -36,10 +48,11 @@ export const getEventsByUserId = (userId) => {
  */
 export const createEvent = (event_name, event_type, event_date, event_start_time, event_end_time, event_venue, department_id, status, guests, main_guest) =>  {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO event  (event_name, event_type, event_date, event_start_time, event_end_time, event_venue, department_id, status, guests, main_guest) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
-            [event_name, event_type, event_date, event_start_time, event_end_time, event_venue, department_id, status, guests, main_guest], 
+        db.query('INSERT INTO event  (event_name, event_type, event_date, event_start_time, event_end_time, event_venu, status, main_guest) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', 
+            [event_name, event_type, event_date, event_start_time, event_end_time, event_venue , department_id, status, main_guest], 
             (err, result) => {
                 if (err) {
+                    console.error();
                     reject(err);
                 } else {
                     resolve();

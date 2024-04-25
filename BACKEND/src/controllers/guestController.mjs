@@ -1,8 +1,8 @@
 import express from "express";
 import { response } from "../utils/response.mjs";
-import {getEventsByUserId,createEvent} from '../models/eventModle.mjs';
+import {getEventsByUserId,createEvent,getGuestByUserId} from '../models/eventModle.mjs';
 
-const eventController = express.Router(); 
+const guestController = express.Router(); 
 
 /**
  * this router is responsible for getting all events
@@ -10,11 +10,11 @@ const eventController = express.Router();
  * @name get/events
  */
 
-eventController.get("/:user_id", async (req, res) => {
+guestController.get("/:user_id", async (req, res) => {
     try {
         const userId = req.params.user_id;
 
-        const events = await getEventsByUserId(userId);
+        const events = await getGuestByUserId(userId);
 
         return response.success(res,events);
     } catch (error) {
@@ -31,7 +31,7 @@ eventController.get("/:user_id", async (req, res) => {
  * 
  */
 
-eventController.post("/create", async (req, res) => {
+guestController.post("/create", async (req, res) => {
     try {
         console.log(req.body);
         const { eventName, eventType, eventDate, eventStartTime, eventEndTime, eventVenue, status, guests } = req.body;
@@ -40,11 +40,8 @@ eventController.post("/create", async (req, res) => {
 
         return response.success(res, "Event created successfully");
     } catch (error) {
-        console.log(error);
         return response.error(res, error.message);
     }
 });
 
-eventController.post
-
-export default eventController;
+export default guestController;
